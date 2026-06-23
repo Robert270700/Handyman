@@ -1143,33 +1143,28 @@ p { max-width: 68ch; }
   position: fixed;
   inset: 0;
   z-index: 10000;
-}
-
-.intro__panel {
-  position: absolute;
-  left: 0; right: 0;
   background: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
   will-change: transform;
 }
-.intro__panel--top    { top: 0;    height: 50.5%; }
-.intro__panel--bottom { bottom: 0; height: 50.5%; }
 
-.intro.is-leaving .intro__panel--top    { transform: translateY(-100%); }
-.intro.is-leaving .intro__panel--bottom { transform: translateY(100%); }
+.intro.is-leaving { transform: translateY(-100%); }
 
 .intro__content {
-  position: absolute;
-  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  z-index: 2;
   pointer-events: none;
-  transition: opacity 0.2s;
+  transition: filter 0.75s var(--ease), opacity 0.6s var(--ease);
 }
-.intro.is-leaving .intro__content { opacity: 0; }
+
+.intro.is-leaving .intro__content {
+  filter: blur(14px);
+  opacity: 0;
+}
 
 .intro__line {
   width: 0;
