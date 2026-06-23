@@ -1137,6 +1137,44 @@ p { max-width: 68ch; }
   .cta-banner .btn { width: 100%; justify-content: center; }
 }
 
+/* ── Intro Splash ─────────────────────────────────── */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.7s cubic-bezier(0.76, 0, 0.24, 1),
+              transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.intro.is-leaving {
+  opacity: 0;
+  transform: translateY(-6%);
+  pointer-events: none;
+}
+
+.intro__logo {
+  font-family: var(--font-head);
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  opacity: 0;
+  transform: translateY(8px);
+  animation: introFadeIn 0.6s 0.3s var(--ease) forwards;
+}
+
+.intro__logo span { color: rgba(255,255,255,0.35); }
+
+@keyframes introFadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* ═══════════════════════════════════════════════════
    JS-ENHANCED LAYER
    ═══════════════════════════════════════════════════ */

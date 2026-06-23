@@ -1,3 +1,21 @@
+// ── Intro Splash ─────────────────────────────────────────
+(function initIntro() {
+  const intro = document.getElementById('intro');
+  if (!intro) return;
+
+  // Nur einmal pro Session zeigen
+  if (sessionStorage.getItem('hhIntroSeen')) {
+    intro.remove();
+    return;
+  }
+
+  setTimeout(() => {
+    intro.classList.add('is-leaving');
+    intro.addEventListener('transitionend', () => intro.remove(), { once: true });
+    sessionStorage.setItem('hhIntroSeen', '1');
+  }, 2200);
+})();
+
 // ── Utils ────────────────────────────────────────────────
 const qs  = (s, c = document) => c.querySelector(s);
 const qsa = (s, c = document) => [...c.querySelectorAll(s)];
