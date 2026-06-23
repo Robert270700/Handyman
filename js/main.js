@@ -322,26 +322,29 @@ const isTouch = () => window.matchMedia('(hover: none)').matches;
   });
 })();
 
-// ── Split Text Reveal ────────────────────────────────────
-(function initTextSplit() {
-  // Only apply to section headers (not hero which has <em> and <br>)
+// ── Heading Wave Reveal ──────────────────────────────────
+(function initHeadingWave() {
   qsa('.section-header h2, .page-hero h1').forEach(el => {
-    // Skip if contains HTML tags
     if (/<[^>]+>/.test(el.innerHTML)) return;
 
-    const words = el.textContent.trim().split(/\s+/);
-    el.innerHTML = words.map((w, i) =>
-      `<span class="anim-wrap"><span class="anim-word" style="transition-delay:${0.07 * i}s">${w}</span></span>`
-    ).join(' ');
+    const text = el.textContent.trim();
+    let charIndex = 0;
+
+    // Zeichen für Zeichen aufteilen, Leerzeichen als echte Lücken
+    el.innerHTML = text.split('').map(ch => {
+      if (ch === ' ') return '<span class="anim-space"> </span>';
+      const delay = (charIndex++ * 0.028).toFixed(3);
+      return `<span class="anim-wrap"><span class="anim-char" style="transition-delay:${delay}s">${ch}</span></span>`;
+    }).join('');
 
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
-          qsa('.anim-word', e.target).forEach(w => w.classList.add('is-visible'));
+          qsa('.anim-char', e.target).forEach(c => c.classList.add('is-visible'));
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.3 });
 
     io.observe(el);
   });
