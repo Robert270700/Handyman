@@ -320,6 +320,19 @@ const isTouch = () => window.matchMedia('(hover: none)').matches;
     el.classList.add('reveal');
     io.observe(el);
   });
+
+  // Display-Title Curtain + Rule Slide-in
+  const curtainIo = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('is-visible');
+      const rule = e.target.nextElementSibling;
+      if (rule?.classList.contains('display-rule')) rule.classList.add('is-visible');
+      curtainIo.unobserve(e.target);
+    });
+  }, { threshold: 0.5 });
+
+  qsa('.display-title').forEach(el => curtainIo.observe(el));
 })();
 
 // ── Heading Wave Reveal ──────────────────────────────────
