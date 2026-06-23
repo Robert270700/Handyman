@@ -1143,37 +1143,73 @@ p { max-width: 68ch; }
   position: fixed;
   inset: 0;
   z-index: 10000;
-  background: var(--text);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.7s cubic-bezier(0.76, 0, 0.24, 1),
-              transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-.intro.is-leaving {
-  opacity: 0;
-  transform: translateY(-6%);
-  pointer-events: none;
+.intro__panel {
+  position: absolute;
+  left: 0; right: 0;
+  background: var(--text);
+  transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: transform;
 }
+.intro__panel--top    { top: 0;    height: 50.5%; }
+.intro__panel--bottom { bottom: 0; height: 50.5%; }
+
+.intro.is-leaving .intro__panel--top    { transform: translateY(-100%); }
+.intro.is-leaving .intro__panel--bottom { transform: translateY(100%); }
+
+.intro__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.intro.is-leaving .intro__content { opacity: 0; }
+
+.intro__line {
+  width: 0;
+  height: 1px;
+  background: rgba(255,255,255,0.12);
+  margin-bottom: 32px;
+  transition: width 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.intro__line.is-visible { width: min(260px, 38vw); }
 
 .intro__logo {
   font-family: var(--font-head);
-  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-size: clamp(0.85rem, 1.8vw, 1.15rem);
   font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.88);
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
+}
+.intro__logo.is-visible { opacity: 1; transform: translateY(0); }
+
+.intro__slash { color: rgba(255,255,255,0.25); }
+.intro__word  { color: rgba(255,255,255,0.88); min-width: 5.5ch; }
+
+.intro__sub {
+  font-size: 0.65rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255,255,255,0.2);
+  margin-top: 20px;
   opacity: 0;
-  transform: translateY(8px);
-  animation: introFadeIn 0.6s 0.3s var(--ease) forwards;
+  transform: translateY(5px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
 }
-
-.intro__logo span { color: rgba(255,255,255,0.35); }
-
-@keyframes introFadeIn {
-  to { opacity: 1; transform: translateY(0); }
-}
+.intro__sub.is-visible { opacity: 1; transform: translateY(0); }
 
 /* ═══════════════════════════════════════════════════
    JS-ENHANCED LAYER

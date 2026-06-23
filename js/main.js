@@ -1,19 +1,56 @@
 // ── Intro Splash ─────────────────────────────────────────
 (function initIntro() {
-  const intro = document.getElementById('intro');
+  const intro   = document.getElementById('intro');
   if (!intro) return;
 
-  // Nur einmal pro Session zeigen
   if (sessionStorage.getItem('hhIntroSeen')) {
     intro.remove();
     return;
   }
 
+  const lineEl = intro.querySelector('.intro__line');
+  const logoEl = intro.querySelector('.intro__logo');
+  const subEl  = intro.querySelector('.intro__sub');
+  const wordEl = document.getElementById('introWord');
+  const WORD   = 'HausHeld';
+  const CHARS  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ·—/';
+
+  function scrambleIn(el, word, onDone) {
+    let step = 0;
+    let raf;
+    (function tick() {
+      el.textContent = word.split('').map((ch, i) => {
+        if (i < Math.floor(step)) return word[i];
+        return CHARS[Math.floor(Math.random() * CHARS.length)];
+      }).join('');
+      step += 0.32;
+      if (step < word.length + 0.5) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        el.textContent = word;
+        if (onDone) onDone();
+      }
+    })();
+  }
+
+  // Phase 1 — Linie zieht sich auf (80ms Verzögerung)
+  setTimeout(() => lineEl.classList.add('is-visible'), 80);
+
+  // Phase 2 — Logo einblenden + Scramble (500ms)
   setTimeout(() => {
-    intro.classList.add('is-leaving');
-    intro.addEventListener('transitionend', () => intro.remove(), { once: true });
+    logoEl.classList.add('is-visible');
+    scrambleIn(wordEl, WORD, () => {
+      // Phase 3 — Subtitle einblenden nach Scramble
+      subEl.classList.add('is-visible');
+    });
+  }, 500);
+
+  // Phase 4 — Exit: Screen spaltet sich auf (2.8s)
+  setTimeout(() => {
     sessionStorage.setItem('hhIntroSeen', '1');
-  }, 2200);
+    intro.classList.add('is-leaving');
+    setTimeout(() => intro.remove(), 1100);
+  }, 2800);
 })();
 
 // ── Utils ────────────────────────────────────────────────
