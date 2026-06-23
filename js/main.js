@@ -3,10 +3,6 @@
   const intro   = document.getElementById('intro');
   if (!intro) return;
 
-  if (sessionStorage.getItem('hhIntroSeen')) {
-    intro.remove();
-    return;
-  }
 
   const lineEl = intro.querySelector('.intro__line');
   const logoEl = intro.querySelector('.intro__logo');
@@ -47,7 +43,6 @@
 
   // Phase 4 — Exit: Screen spaltet sich auf (2.8s)
   setTimeout(() => {
-    sessionStorage.setItem('hhIntroSeen', '1');
     intro.classList.add('is-leaving');
     setTimeout(() => intro.remove(), 1100);
   }, 2800);
