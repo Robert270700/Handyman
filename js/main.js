@@ -95,6 +95,42 @@ const isTouch = () => window.matchMedia('(hover: none)').matches;
   });
 })();
 
+// ── Text Scramble auf [data-scramble] ────────────────────
+(function initScramble() {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ·/—→';
+
+  qsa('[data-scramble]').forEach(el => {
+    const original = el.getAttribute('data-scramble');
+    let raf = null;
+
+    el.closest('a, button').addEventListener('mouseenter', () => {
+      cancelAnimationFrame(raf);
+      let step = 0;
+
+      function tick() {
+        el.textContent = original.split('').map((ch, i) => {
+          if (ch === ' ') return ' ';
+          if (i < step) return original[i];
+          return chars[Math.floor(Math.random() * chars.length)];
+        }).join('');
+
+        step += 0.45;
+        if (step < original.length) {
+          raf = requestAnimationFrame(tick);
+        } else {
+          el.textContent = original;
+        }
+      }
+      tick();
+    });
+
+    el.closest('a, button').addEventListener('mouseleave', () => {
+      cancelAnimationFrame(raf);
+      el.textContent = original;
+    });
+  });
+})();
+
 // ── Magnetic Buttons ─────────────────────────────────────
 (function initMagnetic() {
   if (isTouch()) return;
@@ -177,12 +213,6 @@ const isTouch = () => window.matchMedia('(hover: none)').matches;
 
 // ── Scroll Reveal ─────────────────────────────────────────
 (function initScrollReveal() {
-  // Hero-Content-Elemente bekommen Reveal + CSS-Stagger (via --stagger in CSS)
-  qsa('.hero__label, .hero__headline, .hero__sub, .hero__actions, .hero__trust').forEach(el => {
-    el.classList.add('reveal');
-    io.observe(el);
-  });
-
   const targets = [
     '.service-card',
     '.feature',
@@ -213,6 +243,12 @@ const isTouch = () => window.matchMedia('(hover: none)').matches;
       }
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+
+  // Hero-Content-Elemente bekommen Reveal + CSS-Stagger (via --stagger in CSS)
+  qsa('.hero__label, .hero__headline, .hero__sub, .hero__actions, .hero__trust').forEach(el => {
+    el.classList.add('reveal');
+    io.observe(el);
+  });
 
   qsa(targets.join(', ')).forEach(el => {
     el.classList.add('reveal');
