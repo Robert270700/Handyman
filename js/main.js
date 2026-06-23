@@ -59,10 +59,21 @@ const isTouch = () => window.matchMedia('(hover: none)').matches;
   overlay.className = 'page-overlay';
   document.body.appendChild(overlay);
 
-  // Reveal page: slide overlay off
-  requestAnimationFrame(() => requestAnimationFrame(() => {
+  function reveal() {
     overlay.classList.add('is-revealed');
-  }));
+  }
+
+  // Reveal page: slide overlay off
+  requestAnimationFrame(() => requestAnimationFrame(reveal));
+
+  // Bfcache-Fix: Mobile-Zurück-Button stellt Seite aus Cache wieder her —
+  // Overlay muss dann manuell aufgedeckt werden
+  window.addEventListener('pageshow', e => {
+    if (e.persisted) {
+      overlay.classList.remove('is-revealed');
+      requestAnimationFrame(() => requestAnimationFrame(reveal));
+    }
+  });
 
   // Intercept internal links
   document.addEventListener('click', e => {
