@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kontakt & Anfrage – HandyPro München</title>
+  <meta name="description" content="Kontakt aufnehmen mit HandyPro München. Kostenloses Angebot für Umzug, Möbelmontage, Entrümpelung & mehr. Schnelle Rückmeldung garantiert.">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type"   content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title"  content="Kontakt – HandyPro München">
+
+  <link rel="canonical" href="https://handypro-muenchen.de/kontakt.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav__bar">
+    <a href="index.html" class="nav__logo">/ Handy<span>Pro</span> /</a>
+    <button class="nav__toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="nav__overlay" id="navOverlay" aria-hidden="true">
+  <ul class="nav__overlay-list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="leistungen/umzugshilfe.html">Umzugshilfe</a></li>
+    <li><a href="leistungen/entruempelung.html">Entrümpelung</a></li>
+    <li><a href="leistungen/moebelmontage.html">Möbelmontage</a></li>
+    <li><a href="leistungen/wandmontage.html">Wandmontage</a></li>
+    <li><a href="leistungen/haus-gartenpflege.html">Haus & Garten</a></li>
+    <li><a href="ueber-uns.html">Über uns</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+  </ul>
+  <div class="nav__overlay-contact">
+    <a href="tel:+49XXXXXXXXX">+49 XXX XXXXXXXX</a>
+    <a href="mailto:info@handypro-muenchen.de">info@handypro-muenchen.de</a>
+  </div>
+</nav>
+
+<main>
+
+<section class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb__sep">›</span>
+      <span>Kontakt</span>
+    </nav>
+    <h1>Schreibt uns einfach.</h1>
+    <p class="page-hero__sub">Kein langes Formular, keine Warteschleife. Kurz beschreiben was ansteht — wir melden uns schnell mit einem konkreten Angebot.</p>
+  </div>
+</section>
+
+<section class="section contact-section">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Formular -->
+      <div class="contact-form">
+        <h2>Anfrage schicken</h2>
+        <p>Alle Felder sind optional außer Name und Nachricht — aber je mehr ihr schreibt, desto genauer können wir den Preis einschätzen.</p>
+
+        <!-- HINWEIS: action-URL muss noch mit echtem Formular-Backend verbunden werden (z.B. Formspree, Netlify Forms oder eigenes PHP) -->
+        <form action="#" method="POST" novalidate>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name *</label>
+              <input type="text" id="name" name="name" placeholder="Euer Name" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="tel">Telefon</label>
+              <input type="tel" id="tel" name="telefon" placeholder="+49 XXX XXXXXXXX" autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" name="email" placeholder="eure@email.de" autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label for="leistung">Welche Leistung?</label>
+            <select id="leistung" name="leistung">
+              <option value="">Bitte auswählen…</option>
+              <option value="umzugshilfe">📦 Umzugshilfe & Transport</option>
+              <option value="entruempelung">🗑️ Entrümpelung & Sperrmüll</option>
+              <option value="moebelmontage">🪚 Möbelmontage</option>
+              <option value="wandmontage">🔨 Wandmontage</option>
+              <option value="haus-garten">🏡 Haus- & Gartenpflege</option>
+              <option value="mehreres">Mehrere Leistungen</option>
+              <option value="sonstiges">Sonstiges</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="nachricht">Was genau ist zu tun? *</label>
+            <textarea id="nachricht" name="nachricht" placeholder="Kurze Beschreibung: Was soll gemacht werden? Wie viele Möbel, welches Stockwerk, wie groß der Keller usw. — je genauer, desto besser können wir den Preis einschätzen." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="termin">Wunschtermin (optional)</label>
+            <input type="text" id="termin" name="termin" placeholder="z.B. Samstag nächste Woche, oder: möglichst bald">
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--lg" style="width:100%;justify-content:center;margin-top:8px;">
+            Anfrage absenden →
+          </button>
+
+          <p class="form-note">* Pflichtfelder. Eure Daten werden nur zur Bearbeitung eurer Anfrage genutzt und nicht weitergegeben. <a href="datenschutz.html" style="color:var(--primary);">Datenschutz</a></p>
+        </form>
+      </div>
+
+      <!-- Kontaktinfo -->
+      <aside class="contact-info">
+        <h3>Direkter Kontakt</h3>
+
+        <div class="contact-item">
+          <div class="contact-item__icon">📞</div>
+          <div>
+            <div class="contact-item__label">Telefon</div>
+            <div class="contact-item__value">
+              <a href="tel:+49XXXXXXXXX">+49 XXX XXXXXXXX</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item__icon">✉️</div>
+          <div>
+            <div class="contact-item__label">E-Mail</div>
+            <div class="contact-item__value">
+              <a href="mailto:info@handypro-muenchen.de">info@handypro-muenchen.de</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item__icon">💬</div>
+          <div>
+            <div class="contact-item__label">WhatsApp</div>
+            <div class="contact-item__value">Auf Anfrage verfügbar</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item__icon">🕐</div>
+          <div>
+            <div class="contact-item__label">Erreichbarkeit</div>
+            <div class="contact-item__value" style="font-size:.875rem; line-height:1.7;">
+              Mo–Fr: 8:00 – 18:00 Uhr<br>
+              Sa: 9:00 – 14:00 Uhr
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item__icon">📍</div>
+          <div>
+            <div class="contact-item__label">Einsatzgebiet</div>
+            <div class="contact-item__value" style="font-size:.875rem; line-height:1.7;">
+              München und direktes Umland
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 32px; padding: 24px; background: var(--primary-pale); border-radius: var(--r-l); border: 1px solid var(--primary-light);">
+          <p style="font-size: .875rem; color: var(--text-muted); line-height: 1.65; max-width: none;">
+            <strong style="color: var(--text);">Schnelle Rückmeldung:</strong> Wir antworten in der Regel innerhalb weniger Stunden — an Werktagen meist noch am selben Tag.
+          </p>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__col">
+      <a href="index.html" class="footer__logo">Handy<span>Pro</span></a>
+      <p class="footer__tagline">Euer zuverlässiger Handyman-Service in München.</p>
+    </div>
+    <div class="footer__col">
+      <h4>Leistungen</h4>
+      <ul>
+        <li><a href="leistungen/umzugshilfe.html">Umzugshilfe</a></li>
+        <li><a href="leistungen/entruempelung.html">Entrümpelung</a></li>
+        <li><a href="leistungen/moebelmontage.html">Möbelmontage</a></li>
+        <li><a href="leistungen/wandmontage.html">Wandmontage</a></li>
+        <li><a href="leistungen/haus-gartenpflege.html">Haus & Garten</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Unternehmen</h4>
+      <ul>
+        <li><a href="ueber-uns.html">Über uns</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Kontakt</h4>
+      <ul>
+        <li><a href="tel:+49XXXXXXXXX">+49 XXX XXXXXXXX</a></li>
+        <li><a href="mailto:info@handypro-muenchen.de">info@handypro-muenchen.de</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container">
+      <p>© 2025 HandyPro München.</p>
+      <nav><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></nav>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

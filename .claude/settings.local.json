@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:weaintplastic.com)",
+      "Bash(open *)",
+      "Bash(python3 *)",
+      "Bash(vercel --version)",
+      "Bash(npm install *)",
+      "Bash(sudo npm install -g vercel)",
+      "Bash(npx vercel *)",
+      "Read(//Users/robertscheidweiler/.local/share/com.vercel.cli/**)",
+      "Read(//Users/robertscheidweiler/.config/vercel/**)",
+      "Read(//Users/robertscheidweiler/**)",
+      "Bash(xargs cat)",
+      "Bash(curl -s -X PATCH https://api.vercel.com/v9/projects/handyman?teamId=__TRACKED_VAR__ -H 'Authorization: Bearer __TRACKED_VAR__' -H 'Content-Type: application/json' -d '{\"ssoProtection\":null}')",
+      "Bash(gh auth *)",
+      "Bash(git --version)",
+      "Bash(git -C /Users/robertscheidweiler/Desktop/handyman status)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}
