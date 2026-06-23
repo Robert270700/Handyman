@@ -460,12 +460,17 @@ p { max-width: 68ch; }
   text-align: center;
   color: var(--text);
   margin-bottom: 20px;
-  clip-path: inset(0 50% 0 50%);
-  transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scaleX(0);
+  transform-origin: center;
+  opacity: 0;
+  transition:
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity   0.5s ease;
 }
 
 .display-title.is-visible {
-  clip-path: inset(0 0% 0 0%);
+  transform: scaleX(1);
+  opacity: 1;
 }
 
 .display-rule {
@@ -475,10 +480,11 @@ p { max-width: 68ch; }
   opacity: 0;
   margin: 0 auto 48px;
   transform: scaleX(0);
+  transform-origin: center;
   transition:
     transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
     opacity   0.4s ease;
-  transition-delay: 0.75s;
+  transition-delay: 0.8s;
 }
 
 .display-rule.is-visible {

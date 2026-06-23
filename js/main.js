@@ -322,17 +322,29 @@ const isTouch = () => window.matchMedia('(hover: none)').matches;
   });
 
   // Display-Title Curtain + Rule Slide-in
+  function revealDisplayTitle(el) {
+    el.classList.add('is-visible');
+    const rule = el.nextElementSibling;
+    if (rule?.classList.contains('display-rule')) rule.classList.add('is-visible');
+  }
+
   const curtainIo = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
-      e.target.classList.add('is-visible');
-      const rule = e.target.nextElementSibling;
-      if (rule?.classList.contains('display-rule')) rule.classList.add('is-visible');
+      revealDisplayTitle(e.target);
       curtainIo.unobserve(e.target);
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  qsa('.display-title').forEach(el => curtainIo.observe(el));
+  qsa('.display-title').forEach(el => {
+    // Sofort triggern falls bereits im Viewport
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      revealDisplayTitle(el);
+    } else {
+      curtainIo.observe(el);
+    }
+  });
 })();
 
 // ── Heading Wave Reveal ──────────────────────────────────
