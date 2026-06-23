@@ -355,12 +355,16 @@ const isTouch = () => window.matchMedia('(hover: none)').matches;
     const text = el.textContent.trim();
     let charIndex = 0;
 
-    // Zeichen für Zeichen aufteilen, Leerzeichen als echte Lücken
-    el.innerHTML = text.split('').map(ch => {
-      if (ch === ' ') return '<span class="anim-space"> </span>';
-      const delay = (charIndex++ * 0.028).toFixed(3);
-      return `<span class="anim-wrap"><span class="anim-char" style="transition-delay:${delay}s">${ch}</span></span>`;
-    }).join('');
+    // Wörter als Einheit behalten (kein Umbruch mitten im Wort)
+    el.innerHTML = text.split(' ').map(word => {
+      const chars = word.split('').map(ch => {
+        const delay = (charIndex++ * 0.028).toFixed(3);
+        return `<span class="anim-wrap"><span class="anim-char" style="transition-delay:${delay}s">${ch}</span></span>`;
+      }).join('');
+      charIndex; // Leerzeichen überspringen im Index
+      charIndex++;
+      return `<span class="anim-word-group">${chars}</span>`;
+    }).join(' ');
 
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {

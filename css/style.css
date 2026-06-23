@@ -1343,6 +1343,11 @@ p { max-width: 68ch; }
   width: 0.28em;
 }
 
+.anim-word-group {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 .anim-char {
   display: inline-block;
   transform: translateY(115%) rotate(4deg);
