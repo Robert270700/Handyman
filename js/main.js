@@ -41,11 +41,16 @@
     });
   }, 500);
 
-  // Phase 4 — Exit: Screen spaltet sich auf (2.8s)
+  // Phase 4 — Exit: Screen zieht nach oben weg (2.8s)
   setTimeout(() => {
     intro.classList.add('is-leaving');
     setTimeout(() => intro.remove(), 1100);
   }, 2800);
+
+  // Zurück-Button: Intro sofort entfernen wenn Seite aus bfcache kommt
+  window.addEventListener('pageshow', e => {
+    if (e.persisted) intro.remove();
+  }, { once: true });
 })();
 
 // ── Utils ────────────────────────────────────────────────
