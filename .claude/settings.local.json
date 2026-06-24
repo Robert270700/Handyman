@@ -26,7 +26,10 @@
       "Bash(sed -n '67,80p' /Users/robertscheidweiler/Desktop/handyman/css/style.css)",
       "Bash(sed -n '1136,1200p' /Users/robertscheidweiler/Desktop/handyman/css/style.css)",
       "Bash(npm i *)",
-      "Bash(grep -rn \"HandyPro\" /Users/robertscheidweiler/Desktop/handyman/ --include=\"*.html\" --include=\"*.css\" --include=\"*.js\" ! -path \"*/.vercel/*\")"
+      "Bash(grep -rn \"HandyPro\" /Users/robertscheidweiler/Desktop/handyman/ --include=\"*.html\" --include=\"*.css\" --include=\"*.js\" ! -path \"*/.vercel/*\")",
+      "mcp__plugin_vercel_vercel__list_deployments",
+      "mcp__plugin_vercel_vercel__get_project",
+      "mcp__plugin_vercel_vercel__web_fetch_vercel_url"
     ]
   }
 }
